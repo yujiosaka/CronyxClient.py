@@ -1,0 +1,2 @@
+class CronyxClientError(Exception):
+    pass

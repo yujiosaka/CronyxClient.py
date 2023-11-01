@@ -1,0 +1,85 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci-cd:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    services:
+      server:
+        image: yujiosaka/cronyx-server:latest
+        ports:
+          - 3000:3000
+        env:
+          SERVER_PORT: "3000"
+          TIMEZONE: UTC
+          JOB_STORE_SOURCE: mongodb
+          JOB_STORE_URL: mongodb://mongodb:27017/test
+
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install
+          bun install
+
+      - name: Lint with flake8
+        run: |
+          poetry run flake8 cronyx_client
+
+      - name: Check code formatting
+        run: |
+          poetry run black --check cronyx_client
+
+      - name: Check imports with isort
+        run: |
+          poetry run isort cronyx_client --check --diff
+
+      - name: Run Pytype
+        run: |
+          poetry run pytype cronyx_client
+
+      - name: Run unit tests
+        run: |
+          poetry run pytest
+        env:
+          SERVER_URL: http://127.0.0.1:3000
+          MONGO_URI: mongodb://127.0.0.1:27017/test
+
+      - id: semantic-release
+        name: Run semantic-release
+        run: |
+          bunx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish package
+        run: poetry publish --build -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
+        if: ${{ steps.semantic-release.outputs.nextVer != null }}
