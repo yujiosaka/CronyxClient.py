@@ -50,17 +50,13 @@ jobs:
           poetry install
           bun install
 
-      - name: Lint with flake8
+      - name: Lint
         run: |
-          poetry run flake8 cronyx_client
+          poetry run ruff check --output-format=github cronyx_client
 
       - name: Check code formatting
         run: |
-          poetry run black --check cronyx_client
-
-      - name: Check imports with isort
-        run: |
-          poetry run isort cronyx_client --check --diff
+          poetry run ruff format --check cronyx_client
 
       - name: Run Pytype
         run: |

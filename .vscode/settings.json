@@ -1,18 +1,13 @@
 {
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--max-line-length=125"],
-  "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length=125"],
   "python.testing.pytestArgs": ["tests"],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "editor.rulers": [125],
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.organizeImports": true
+      "source.fixAll": true
     },
     "editor.tabSize": 4
   },
@@ -21,6 +16,5 @@
     "editor.detectIndentation": false,
     "editor.tabSize": 4
   },
-  "isort.args":["--profile", "black"],
   "terminal.integrated.copyOnSelection": true
 }

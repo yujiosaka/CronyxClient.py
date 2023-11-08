@@ -8,7 +8,7 @@ Please note that this project has a [code of conduct](https://github.com/yujiosa
 
 1. Make sure to set up your local environment according to the instructions in README.md.
 
-2. Follow Python's PEP 8 style guide. Additionally, we use [Black](https://github.com/psf/black) for code formatting, [isort](https://pycqa.github.io/isort/) for import sorting, and [flake8](https://flake8.pycqa.org/en/latest/) for code linting. Ensure your code complies with all these tools. They are set up to run automatically on commit via pre-commit hooks.
+2. Follow Python's PEP 8 style guide. Additionally, we use [Ruff](https://github.com/astral-sh/ruff) for code formatting, import sorting and code linting. Ensure your code complies with it. It is set up to run automatically on commit via pre-commit hooks.
 
 3. Type annotations should be added wherever possible. We use Python's built-in `typing` module for this purpose.
 
