@@ -22,12 +22,12 @@ CronyxClient.py bridges the capabilities of Cronyx and CronyxServer, offering a 
 
 ### Installation
 
-Install the CronyxClient.py package using pip:
+Install the CronyxClient.py package using pip or uv:
 
 ```sh
 $ pip install cronyx-client
 # or
-# $ poetry add cronyx-client
+$ uv pip install cronyx-client
 ```
 
 ### Basic Usage
@@ -97,7 +97,13 @@ git clone https://github.com/yujiosaka/CronyxClient.py.git
 
 5. The extension will build the Docker container and set up the development environment for you. This may take a few minutes.
 
-6. Build and run the Docker container with Docker Compose:
+6. Install dependencies using uv:
+
+```sh
+$ ./setup_dev_env.sh
+```
+
+7. Build and run the Docker container with Docker Compose:
 
 ```sh
 $ docker-compose up --build

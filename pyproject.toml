@@ -1,12 +1,13 @@
-[tool.poetry]
+[project]
 name = "cronyx-client"
 version = "1.0.0"
 description = "A Python HTTP client wrapper for CronyxServer, seamlessly integrating the power of Cronyx across platforms using a familiar API interface."
-authors = ["yujiosaka <yujisobe@gmail.com>"]
-license = "MIT"
+authors = [
+    {name = "yujiosaka", email = "yujisobe@gmail.com"}
+]
+license = {text = "MIT"}
 readme = "README.md"
-homepage = "https://github.com/yujiosaka/CronyxClient.py"
-repository = "https://github.com/yujiosaka/CronyxClient.py"
+requires-python = ">=3.8.1,<4.2"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -14,26 +15,28 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.11",
 ]
+dependencies = [
+    "pydantic>=2.4.2",
+    "httpx>=0.28.1",
+]
+urls = {homepage = "https://github.com/yujiosaka/CronyxClient.py", repository = "https://github.com/yujiosaka/CronyxClient.py"}
 
-[tool.poetry.dependencies]
-python = ">=3.8.1,<4.2"
-pydantic = "^2.4.2"
-httpx = "^0.28.1"
-
-[tool.poetry.group.dev.dependencies]
-coverage = "^7.3.2"
-pre-commit = "^3.5.0"
-pytype = "^2023.10.31"
-pytest = "^8.3.5"
-pytest-mock = "^3.14.0"
-pytest-watch = "^4.2.0"
-pytest-asyncio = "^0.21.1"
-pymongo = "^4.6.0"
-ruff = "^0.11.7"
+[project.optional-dependencies]
+dev = [
+    "coverage>=7.3.2",
+    "pre-commit>=3.5.0",
+    "pytype>=2023.10.31",
+    "pytest>=8.3.5",
+    "pytest-mock>=3.14.0",
+    "pytest-watch>=4.2.0",
+    "pytest-asyncio>=0.21.1",
+    "pymongo>=4.6.0",
+    "ruff>=0.11.7",
+]
 
 [tool.ruff]
 line-length = 125
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

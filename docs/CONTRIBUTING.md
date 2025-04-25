@@ -12,7 +12,7 @@ Please note that this project has a [code of conduct](https://github.com/yujiosa
 
 3. Type annotations should be added wherever possible. We use Python's built-in `typing` module for this purpose.
 
-4. Make sure all tests pass by running `pytest` from the command line. Modify existing tests if necessary and add new ones when introducing new features or fixing bugs. Test coverage is important to us.
+4. Make sure all tests pass by running `uv run pytest` from the command line. Modify existing tests if necessary and add new ones when introducing new features or fixing bugs. Test coverage is important to us.
 
 5. Update the [README.md](https://github.com/yujiosaka/CronyxClient.py/blob/main/README.md) if you have made changes to the interface or added significant new features.
 
