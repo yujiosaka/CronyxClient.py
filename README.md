@@ -27,7 +27,7 @@ Install the CronyxClient.py package using pip or uv:
 ```sh
 $ pip install cronyx-client
 # or
-$ uv pip install cronyx-client
+$ uv add cronyx-client
 ```
 
 ### Basic Usage
