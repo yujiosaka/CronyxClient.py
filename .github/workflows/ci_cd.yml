@@ -50,7 +50,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv pip install -e ".[dev]" --system
+          uv sync --locked --all-extras --dev
           bun install
 
       - name: Lint
@@ -79,9 +79,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build package
+        run: |
+          uv pip install build
+          uv run python -m build
+        if: ${{ steps.semantic-release.outputs.nextVer != null }}
+
       - name: Publish package
         run: |
-          uv pip install build twine
-          uv run python -m build
+          uv pip install twine
           uv run twine upload dist/* -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
         if: ${{ steps.semantic-release.outputs.nextVer != null }}

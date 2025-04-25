@@ -14,7 +14,7 @@ fi
 
 # Install Python dependencies
 echo "Installing Python dependencies..."
-uv pip install -e ".[dev]"
+uv sync --locked --all-extras --dev
 
 # Check if Bun is installed
 if ! command -v bun >/dev/null 2>&1; then
