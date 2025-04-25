@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/yujiosaka/CronyxClient.py/compare/v1.1.0...v1.1.1) (2025-04-25)
+
+
+### Bug Fixes
+
+* use Python 3.11.12 instead of 3.11.13 for compatibility with GitHub Actions ([baf7578](https://github.com/yujiosaka/CronyxClient.py/commit/baf7578cf56e72505f0039a6d9e949d02123bf78))
+
 # [1.1.0](https://github.com/yujiosaka/CronyxClient.py/compare/v1.0.0...v1.1.0) (2025-04-25)
 
 
