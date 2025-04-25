@@ -18,18 +18,18 @@ classifiers = [
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.2"
 pydantic = "^2.4.2"
-httpx = "^0.25.0"
+httpx = "^0.28.1"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.3.2"
 pre-commit = "^3.5.0"
 pytype = "^2023.10.31"
-pytest = "^7.4.3"
-pytest-mock = "^3.12.0"
+pytest = "^8.3.5"
+pytest-mock = "^3.14.0"
 pytest-watch = "^4.2.0"
 pytest-asyncio = "^0.21.1"
 pymongo = "^4.6.0"
-ruff = "^0.1.4"
+ruff = "^0.11.7"
 
 [tool.ruff]
 line-length = 125
