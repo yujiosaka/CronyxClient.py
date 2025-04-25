@@ -50,7 +50,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv pip install -e ".[dev]"
+          uv pip install -e ".[dev]" --system
           bun install
 
       - name: Lint
