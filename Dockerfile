@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y curl git unzip zip && \
     # Clean up APT when done
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY pyproject.toml package.json bun.lockb ./
+COPY pyproject.toml uv.lock package.json bun.lockb ./
 
 # Initialize an empty Git repository
 # for preventing Husky install to fail
