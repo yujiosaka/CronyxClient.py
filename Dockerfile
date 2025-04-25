@@ -33,7 +33,7 @@ RUN git init
 RUN bun install
 
 # Install Python dependencies
-RUN uv pip install -e ".[dev]" && \
+RUN uv sync --all-extras --dev && \
     uv run pre-commit install
 
 COPY . .
