@@ -18,10 +18,11 @@ ENV UV_SYSTEM_PYTHON 1
 RUN apt-get update && apt-get install -y curl git unzip zip && \
     curl -fsSL https://bun.sh/install | bash - && \
     ln -s $HOME/.bun/bin/bun /usr/local/bin/bun && \
-    # Install uv
-    curl -fsSL https://astral.sh/uv/install.sh | sh && \
     # Clean up APT when done
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Copy uv binary from the official image
+COPY --from=ghcr.io/astral-sh/uv:0.6.16 /uv/uv /usr/local/bin/
 
 COPY pyproject.toml uv.lock package.json bun.lockb ./
 
