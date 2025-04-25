@@ -1,6 +1,6 @@
 [project]
 name = "cronyx-client"
-version = "1.0.0"
+version = "1.1.0"
 description = "A Python HTTP client wrapper for CronyxServer, seamlessly integrating the power of Cronyx across platforms using a familiar API interface."
 authors = [
     {name = "yujiosaka", email = "yujisobe@gmail.com"}
