@@ -7,11 +7,6 @@ if ! command -v uv >/dev/null 2>&1; then
   exit 1
 fi
 
-if [ ! -d ".venv" ]; then
-  echo "Creating virtual environment..."
-  uv venv
-fi
-
 # Install Python dependencies
 echo "Installing Python dependencies..."
 uv sync --all-extras --dev
