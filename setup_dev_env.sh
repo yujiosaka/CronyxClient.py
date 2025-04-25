@@ -1,14 +1,15 @@
 #!/bin/sh
 set -e
 
-# Check if Poetry is installed
-if ! command -v poetry >/dev/null 2>&1; then
-  echo "Poetry is not installed. Please follow the instructions in the README to install Poetry."
+# Check if uv is installed
+if ! command -v uv >/dev/null 2>&1; then
+  echo "uv is not installed. Please follow the instructions in the README to install uv."
   exit 1
 fi
 
 # Install Python dependencies
-poetry install
+echo "Installing Python dependencies..."
+uv sync --all-extras --dev
 
 # Check if Bun is installed
 if ! command -v bun >/dev/null 2>&1; then
@@ -17,9 +18,11 @@ if ! command -v bun >/dev/null 2>&1; then
 fi
 
 # Install Bun dependencies
+echo "Installing Bun dependencies..."
 bun install
 
 # Set up pre-commit
-poetry run pre-commit install -t pre-commit -t commit-msg
+echo "Setting up pre-commit hooks..."
+uv run pre-commit install -t pre-commit -t commit-msg
 
 echo "Development environment setup complete!"

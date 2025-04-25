@@ -11,6 +11,9 @@ ENV PYTHONPATH=/app
 # for print statements and avoid output buffering.
 ENV PYTHONUNBUFFERED 1
 
+# Set UV_SYSTEM_PYTHON to use system Python
+ENV UV_SYSTEM_PYTHON 1
+
 # Install Bun, Git, and other dependencies
 RUN apt-get update && apt-get install -y curl git unzip zip && \
     curl -fsSL https://bun.sh/install | bash - && \
@@ -18,7 +21,10 @@ RUN apt-get update && apt-get install -y curl git unzip zip && \
     # Clean up APT when done
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY pyproject.toml poetry.lock package.json bun.lockb ./
+# Copy uv binary from the official image
+COPY --from=ghcr.io/astral-sh/uv:0.6.16 /uv/uv /usr/local/bin/
+
+COPY pyproject.toml uv.lock package.json bun.lockb ./
 
 # Initialize an empty Git repository
 # for preventing Husky install to fail
@@ -28,11 +34,9 @@ RUN git init
 RUN bun install
 
 # Install Python dependencies
-RUN pip install --no-cache-dir poetry \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi \
-    && poetry run pre-commit install
+RUN uv sync --all-extras --dev && \
+    uv run pre-commit install
 
 COPY . .
 
-CMD ["ptw"]
+CMD ["uv", "run", "ptw"]
