@@ -16,5 +16,6 @@
     "editor.detectIndentation": false,
     "editor.tabSize": 4
   },
-  "terminal.integrated.copyOnSelection": true
+  "terminal.integrated.copyOnSelection": true,
+  "python.defaultInterpreterPath": "/.venv"
 }

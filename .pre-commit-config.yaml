@@ -6,8 +6,8 @@ repos:
     hooks:
     -   id: commitlint
         name: commitlint
-        entry: ./commitlint.sh
-        language: script
+        entry: bunx commitlint --edit
+        language: system
         stages: [commit-msg]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit

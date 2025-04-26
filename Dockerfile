@@ -1,4 +1,5 @@
 FROM python:3.11.12-slim AS base
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Set the working directory
 WORKDIR /app
@@ -9,10 +10,7 @@ ENV PYTHONPATH=/app
 
 # Set PYTHONUNBUFFERED to ensure immediate output
 # for print statements and avoid output buffering.
-ENV PYTHONUNBUFFERED 1
-
-# Set UV_SYSTEM_PYTHON to use system Python
-ENV UV_SYSTEM_PYTHON 1
+ENV PYTHONUNBUFFERED=1
 
 # Install Bun, Git, and other dependencies
 RUN apt-get update && apt-get install -y curl git unzip zip && \
@@ -21,10 +19,7 @@ RUN apt-get update && apt-get install -y curl git unzip zip && \
     # Clean up APT when done
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Copy uv binary from the official image
-COPY --from=ghcr.io/astral-sh/uv:0.6.16 /uv/uv /usr/local/bin/
-
-COPY pyproject.toml uv.lock package.json bun.lockb ./
+COPY pyproject.toml uv.lock package.json bun.lockb README.md ./
 
 # Initialize an empty Git repository
 # for preventing Husky install to fail
@@ -39,4 +34,4 @@ RUN uv sync --all-extras --dev && \
 
 COPY . .
 
-CMD ["uv", "run", "ptw"]
+CMD ["uv", "run", "ptw", ".", "--now"]

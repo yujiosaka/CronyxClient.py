@@ -6,13 +6,13 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-      - site-packages:/usr/local/lib/python3.11/site-packages
+      - venv:/app/.venv
       - node-modules:/app/node_modules
     environment:
       MONGO_URI: mongodb://mongodb:27017/test
       SERVER_URL: http://server:3000
       LOG_LEVEL: DEBUG
-    command: ptw
+    command: uv run ptw . --now
     restart: always
     depends_on:
       - mongodb
@@ -38,5 +38,5 @@ services:
     restart: always
 
 volumes:
-  site-packages: {}
+  venv: {}
   node-modules: {}
