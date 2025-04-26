@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/yujiosaka/CronyxClient.py/compare/v1.1.1...v1.1.2) (2025-04-26)
+
+
+### Bug Fixes
+
+* make it run locally ([4ba19bd](https://github.com/yujiosaka/CronyxClient.py/commit/4ba19bda6c34e66b62e37affe7801131ba342de7))
+
 ## [1.1.1](https://github.com/yujiosaka/CronyxClient.py/compare/v1.1.0...v1.1.1) (2025-04-25)
 
 
